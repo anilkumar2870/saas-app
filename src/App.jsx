@@ -6,19 +6,28 @@ function App() {
   useEffect(() => {
     fetch("http://13.201.35.42/users")
       .then((res) => res.json())
-      .then((data) => setUsers(data));
+      .then((data) => setUsers(data))
+      .catch((err) => console.error(err));
   }, []);
- 
+
   return (
-    <div>
+    <div style={{ padding: "20px" }}>
       <h1>Users from EC2 API</h1>
-      {users.map((u) => (
-        <div key={u.id}>
-          <p>{u.name} - {u.email}</p>
-        </div>
-      ))}   
-  </div>
+
+      {users.length === 0 ? (
+        <p>Loading...</p>
+      ) : (
+        users.map((user) => (
+          <div key={user.id}>
+            <p><b>ID:</b> {user.id}</p>
+            <p><b>Name:</b> {user.name}</p>
+            <p><b>Email:</b> {user.email}</p>
+            <hr />
+          </div>
+        ))
+      )}
+    </div>
   );
 }
 
-export default App;     
+export default App;    

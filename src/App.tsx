@@ -4,7 +4,7 @@ function App() {
   const [users, setUsers] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch("http://13.201.35.42/users", {
+    fetch("https://anil-api.duckdns.org/users", {
       mode: "cors"
     })
       .then((res) => res.json())
